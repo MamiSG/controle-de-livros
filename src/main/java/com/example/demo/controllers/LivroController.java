@@ -30,8 +30,11 @@ public class LivroController {
     }
 
     @PostMapping
-    public Livro adicionarLivro(@RequestBody Livro livro) {
-        return livroService.salvarLivro(livro);
+    public ResponseEntity<Livro> adicionarLivro(@RequestBody Livro livro) {
+        Livro novoLivro = livroService.salvarLivro(livro);
+        return ResponseEntity
+                .created(null)
+                .body(novoLivro);
     }
 
     @PutMapping("/{id}")
